@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CompanyType extends Model
 {
     use HasFactory;
+
+    public $table = 'company_types';
+
+    protected $fillable = [
+        'type'
+    ];
 }
