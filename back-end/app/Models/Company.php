@@ -16,7 +16,7 @@ class Company extends Model
 
     ];
 
-    public function companyType()
+    public function type()
     {
         return $this->belongsTo(CompanyType::class);
     }
