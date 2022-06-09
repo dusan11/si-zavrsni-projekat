@@ -1,0 +1,37 @@
+--PROJEKAT KONTROLA PROIZVODA--
+
+-SPECIFIKACIJA ZAHTJEVA-
+
+-RUTE-
+
+*PRODUCTS* ##DONE##
+CRUD/api/products
+GET - /api/products - Lista svih proizvoda
+GET - /api/products/{id} - Prikaz jednog proizvoda
+POST - /api/products - Dodavanje novog proizvoda
+PUT - /api/products/{id} - Izmjena jednog proizvoda
+DELETE - /api/products/{id} - Brisanje jednog proizvoda
+
+*ORDERS* ##DONE## JOS TREBA URADITI PIVOT TABELU!!! ZA ORDERS TOTAL PRICE CE SE RACUNATI IZ PIVOT TABELE TAKO STO CE SE UZIMATI POJEDINACNA CIJENA IZ SVAKOG PROIZVODA
+
+1.kada se pravi narudzba u polje se proslijedjuju svi proizvodi!
+
+GET - /api/orders
+GET - /api/orders/{id}
+POST - /api/orders
+PUT - /api/orders/{id}
+DELETE - /api/orders/{id}
+
+
+
+*COMPANIES* ##DONE##
+GET - /api/company - Sve kompanije
+GET - /api/company/{id} - Detalji kompanije
+POST - /api/company - Nova kompanija
+PUT - /api/company/{id} - Izmjena kompanije
+
+*COMPANY TYPE* ##DONE##
+CRUD/api/company-type
+
+*ORDER STATUS* ##DONE##
+CRUD/api/order-status
