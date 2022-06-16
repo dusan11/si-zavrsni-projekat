@@ -12,6 +12,8 @@ use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\ProductController;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,4 +42,7 @@ Route::delete('order/{id}', [OrderController::class, 'destroy']);
 
 Route::post('order/{order_id}/product/{product_id}', [OrderController::class, 'addProduct']);
 Route::delete('order/{order_id}/product/{product_id}', [OrderController::class, 'removeProduct']);
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
 
