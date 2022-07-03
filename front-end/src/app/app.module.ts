@@ -13,16 +13,25 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { NavigationComponent } from './navigation/navigation.component';
+import { UserComponent } from './user/user.component';
 
 const routes:Routes = [
   {
-    path: '', component:HomeComponent
+    path: '', component:HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: 'register', component:RegisterComponent
+    path: 'register', component:RegisterComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login', component:LoginComponent
+  },
+  {
+    path: 'account', component:UserComponent,
+    canActivate: [AuthGuard]
   }
 ]
 
@@ -30,7 +39,9 @@ const routes:Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavigationComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
