@@ -10,6 +10,13 @@ use Tymon\JWTAuth\Exceptions\JWTExceptions;
 
 class UserController extends Controller
 {
+
+    public function show($id)
+    {
+        $data = User::findOrFail($id);
+        return $data;
+    }
+
     public function register(Request $request) {
 
         $user = User::where('email', $request['email'])->first();

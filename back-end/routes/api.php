@@ -43,6 +43,7 @@ Route::delete('order/{id}', [OrderController::class, 'destroy']);
 Route::post('order/{order_id}/product/{product_id}', [OrderController::class, 'addProduct']);
 Route::delete('order/{order_id}/product/{product_id}', [OrderController::class, 'removeProduct']);
 
+Route::get('user/{id}', [UserController::class, 'show']);
 Route::post('register', [UserController::class, 'register']);
 Route::put('user/{id}', [UserController::class, 'update']);
 Route::post('login', [UserController::class, 'login']);
