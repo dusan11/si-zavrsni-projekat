@@ -32,6 +32,28 @@ class UserController extends Controller
         return response()->json($response);
     }
 
+    public function update(Request $request, $id) {
+
+        $user = User::where('email', $request['email'])->first();
+
+        if(!$user) {
+            $response['status'] = 0;
+            $response['message'] = 'User not found';
+            $response['code'] = 404;
+        } else {
+            $user = User::update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
+            $response['status'] = 1;
+            $response['message'] = 'User updated sucessfully';
+            $response['code'] = 200;
+        }
+
+        return response()->json($response);
+    }
+
     public function login(Request $request) {
         $credentials = $request->only('email', 'password');
 

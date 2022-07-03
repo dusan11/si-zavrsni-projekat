@@ -44,5 +44,6 @@ Route::post('order/{order_id}/product/{product_id}', [OrderController::class, 'a
 Route::delete('order/{order_id}/product/{product_id}', [OrderController::class, 'removeProduct']);
 
 Route::post('register', [UserController::class, 'register']);
+Route::put('user/{id}', [UserController::class, 'update']);
 Route::post('login', [UserController::class, 'login']);
 
