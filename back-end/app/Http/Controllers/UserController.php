@@ -72,7 +72,7 @@ class UserController extends Controller
             $response['code'] = 200;
         }else{
             $response['status'] = 0;
-            $response['message'] = 'Internal server error';
+            $response['message'] = 'Internal server error. Unable to process';
             $response['code'] = 500;
         }
 
