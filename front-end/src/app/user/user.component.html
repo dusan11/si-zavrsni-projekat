@@ -10,6 +10,9 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/dashboard/">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     
 
     
@@ -158,32 +161,85 @@
       </div>
 
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sm btn-outline-secondary">Change Name</button>
         <button type="button" class="btn btn-sm btn-outline-secondary">Change Password</button>
+        <button  type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleShowName()">Change name</button>
+        <button  type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleShow()">Change email</button>
         <button type="button" class="btn btn-sm btn-outline-danger">Delete Account</button>
       </div>
       <hr>
+      <h5>Your account details</h5>
+
+      <form>
+        <div class="form-group row">
+          <label for="staticName" class="col-sm-2 col-form-label">Name: </label>
+          <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticName" value={{userName}}>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Email: </label>
+          <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{userEmail}}>
+          </div>
+        </div>
+      </form>
+
+      <!-- Name form -->
+
+      <div *ngIf="isShownName">
+        <hr>
+        <h5>Change name:</h5>
+        <form [formGroup]="nameChangeForm" (ngSubmit)="changeUserName()">
+          <div class="form-group row">
+            <label for="oldName" class="col-sm-2 col-form-label">Old name:</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="oldName" value={{userName}}>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newName" class="col-sm-2 col-form-label">New name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="newName" placeholder="" required formControlName="name">
+            </div>
+            <div style="color: red;" *ngIf="name && name.invalid && name.touched">This field is invalid</div>
+          </div>
+          <br>
+          <button type="button" class="btn btn-danger" (click)="toggleShowName()">Close</button>
+          <button class="btn btn-primary" type="submit" [disabled]="nameChangeForm.invalid">Save changes</button>
+        </form>
+    </div>
+
+      <!-- Email form -->
+
+      <div *ngIf="isShown">
+        <hr>
+        <h5>Change email:</h5>
+        <form [formGroup]="emailChangeForm" (ngSubmit)="changeEmail()">
+          <div class="form-group row">
+            <label for="oldEmail" class="col-sm-2 col-form-label">Old email:</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="oldEmail" value={{userEmail}}>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="newEmail" class="col-sm-2 col-form-label">New email:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="newEmail" placeholder="" required formControlName="email">
+            </div>
+            <div style="color: red;" *ngIf="email && email.invalid && email.touched">This field is invalid</div>
+          </div>
+          <br>
+          <button type="button" class="btn btn-danger" (click)="toggleShow()">Close</button>
+          <button class="btn btn-primary" type="submit" [disabled]="emailChangeForm.invalid">Save changes</button>
+        </form>
+    </div>
+
+  
+
+      
 
 
-      <h2>Account details</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">User id</th>
-              <th scope="col">User email</th>
-              <th scope="col">User name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{userId}}</td>
-              <td>{{userEmail}}</td>
-              <td>{{userName}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      
     </main>
   </div>
 </div>

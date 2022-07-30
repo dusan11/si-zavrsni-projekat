@@ -22,4 +22,12 @@ export class DataService {
   userInfo(userId:any){
     return this.http.get(environment.apiUrl+'/api/user/'+userId);
   }
+
+  changeUserName(data: any, userId:any){
+    return this.http.put(environment.apiUrl+'/api/user/'+userId+'/change-name', data);
+  }
+
+  changeUserEmail(data: any, userId:any){
+    return this.http.put(environment.apiUrl+'/api/user/'+userId+'/change-email', data);
+  }
 }
