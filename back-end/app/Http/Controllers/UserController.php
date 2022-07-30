@@ -63,17 +63,25 @@ class UserController extends Controller
     public function updateEmail(Request $request, $id) {
 
         $user = User::findOrFail($id);
+        $email = $request->email;
+        $existingUser = User::where('email', $email)->first();
 
-        if($user) {
-            $user->email = $request->email;
-            $user->save();
-            $response['status'] = 1;
-            $response['message'] = 'User updated sucessfully';
-            $response['code'] = 200;
-        }else{
+        if($existingUser){
             $response['status'] = 0;
             $response['message'] = 'Internal server error. Unable to process';
             $response['code'] = 500;
+        }else{
+            if($user) {
+                $user->email = $request->email;
+                $user->save();
+                $response['status'] = 1;
+                $response['message'] = 'User updated sucessfully';
+                $response['code'] = 200;
+            }else{
+                $response['status'] = 0;
+                $response['message'] = 'Internal server error. Unable to process';
+                $response['code'] = 500;
+            }
         }
 
        // $user->update(['name', $request->only('name')]);
