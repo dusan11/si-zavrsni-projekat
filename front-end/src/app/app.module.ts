@@ -14,8 +14,13 @@ import { HomeComponent } from './home/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
-import { NavigationComponent } from './navigation/navigation.component';
+
 import { UserComponent } from './user/user.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ProductsComponent } from './products/products.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { CompanyTypeComponent } from './company-type/company-type.component';
+import { OrderStatusComponent } from './order-status/order-status.component';
 
 const routes:Routes = [
   {
@@ -32,7 +37,27 @@ const routes:Routes = [
   {
     path: 'account', component:UserComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {
+    path: 'companies', component:CompaniesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'company-type', component:CompanyTypeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'order-status', component:OrderStatusComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'orders', component:OrdersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'products', component:ProductsComponent,
+    canActivate: [AuthGuard]
+  },
 ]
 
 @NgModule({
@@ -40,8 +65,12 @@ const routes:Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavigationComponent,
-    UserComponent
+    UserComponent,
+    OrdersComponent,
+    ProductsComponent,
+    CompaniesComponent,
+    CompanyTypeComponent,
+    OrderStatusComponent
   ],
   imports: [
     BrowserModule,
