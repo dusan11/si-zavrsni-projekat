@@ -16,7 +16,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = Product::create($request->all());
-        return $data;
+        $respData['status']=201;
+        $respData['data']=$data;
+        return response()->json($respData);
     }
 
     public function show($id)
@@ -29,13 +31,16 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->update($request->all());
-        return $product;
+        $respData['status']=204;
+        $respData['data']=$product;
+        return response()->json($respData);
     }
 
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
         $product->delete($id);
-        return'{"success":"You have succesfully deleted the product."}';
+        $respData['status']=204;
+        return response()->json($respData);
     }
 }
