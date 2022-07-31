@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CompanyType;
 
 class Company extends Model
 {
@@ -16,7 +17,7 @@ class Company extends Model
 
     ];
 
-    public function type()
+    public function company_type()
     {
         return $this->belongsTo(CompanyType::class);
     }
