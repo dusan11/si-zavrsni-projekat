@@ -16,7 +16,10 @@ class OrderStatusController extends Controller
     public function store(Request $request)
     {
         $data = OrderStatus::create($request->all());
-        return $data;
+        $respData['status']=201;
+        $respData['message']='Successfully created.';
+        $respData['data']=$data;
+        return response()->json($respData);
     }
 
     public function show($id)
@@ -29,13 +32,18 @@ class OrderStatusController extends Controller
     {
         $orderStatus = OrderStatus::find($id);
         $orderStatus->update($request->all());
-        return $orderStatus;
+        $respData['status']=204;
+        $respData['message']='Successfully updated.';
+        $respData['data']=$orderStatus;
+        return response()->json($respData);
     }
 
     public function destroy($id)
     {
         $orderStatus = OrderStatus::findOrFail($id);
         $orderStatus->delete($id);
-        return'{"success":"You have succesfully deleted the order status."}';
+        $respData['status']=204;
+        $respData['message']='Successfully deleted.';
+        return response()->json($respData);
     }
 }

@@ -16,7 +16,10 @@ class CompanyTypeController extends Controller
     public function store(Request $request)
     {
         $data = CompanyType::create($request->all());
-        return $data;
+        $respData['status']=201;
+        $respData['message']='Successfully created.';
+        $respData['data']=$data;
+        return response()->json($respData);
     }
 
     public function show($id)
@@ -29,13 +32,18 @@ class CompanyTypeController extends Controller
     {
         $companyType = CompanyType::find($id);
         $companyType->update($request->all());
-        return $companyType;
+        $respData['status']=204;
+        $respData['message']='Successfully updated.';
+        $respData['data']=$companyType;
+        return response()->json($respData);
     }
 
     public function destroy($id)
     {
         $companyType = CompanyType::findOrFail($id);
         $companyType->delete($id);
-        return'{"success":"You have succesfully deleted the company type."}';
+        $respData['status']=204;
+        $respData['message']='Successfully deleted.';
+        return response()->json($respData);
     }
 }

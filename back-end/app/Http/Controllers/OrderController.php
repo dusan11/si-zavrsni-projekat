@@ -22,34 +22,46 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $data = Order::create($request->all());
-        return $data;
+        $respData['status']=201;
+        $respData['message']='Successfully created.';
+        $respData['data']=$data;
+        return response()->json($respData);
     }
 
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
         $order->update($request->all());
-        return $order;
+        $respData['status']=204;
+        $respData['message']='Successfully updated.';
+        $respData['data']=$order;
+        return response()->json($respData);
     }
 
     public function destroy($id)
     {
         $order = Order::findOrFail($id);
         $order->delete($id);
-        return'{"success":"You have succesfully deleted the order."}';
+        $respData['status']=204;
+        $respData['message']='Successfully deleted.';
+        return response()->json($respData);
     }
 
     public function removeProduct($order_id, $product_id)
     {
         $order = Order::find($order_id);
         $order->products()->detach($product_id);
-        return '{"success":"You have succesfully removed the order item."}';
+        $respData['status']=200;
+        $respData['message']='Successfully removed the product.';
+        return response()->json($respData);
     }
 
     public function addProduct(Request $request, $order_id, $product_id)
     {
         $order = Order::find($order_id);
         $order->products()->attach($product_id, $request->input('amount'));
-        return '{"success":"You have succesfully added the order item."}';
+        $respData['status']=200;
+        $respData['message']='Successfully added the product.';
+        return response()->json($respData);
     }
 }

@@ -16,7 +16,10 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $data = Company::create($request->all());
-        return $data;
+        $respData['status']=201;
+        $respData['message']='Successfully created.';
+        $respData['data']=$data;
+        return response()->json($respData);
     }
 
     public function show($id)
@@ -29,13 +32,18 @@ class CompanyController extends Controller
     {
         $company = Company::find($id);
         $company->update($request->all());
-        return $company;
+        $respData['status']=204;
+        $respData['message']='Successfully updated.';
+        $respData['data']=$company;
+        return response()->json($respData);
     }
 
     public function destroy($id)
     {
         $company = Company::findOrFail($id);
         $company->delete($id);
-        return'{"success":"You have succesfully deleted the company."}';
+        $respData['status']=204;
+        $respData['message']='Successfully deleted.';
+        return response()->json($respData);
     }
 }

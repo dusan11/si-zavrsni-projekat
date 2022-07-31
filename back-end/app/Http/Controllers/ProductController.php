@@ -17,6 +17,7 @@ class ProductController extends Controller
     {
         $data = Product::create($request->all());
         $respData['status']=201;
+        $respData['message']='Successfully created.';
         $respData['data']=$data;
         return response()->json($respData);
     }
@@ -32,6 +33,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->update($request->all());
         $respData['status']=204;
+        $respData['message']='Successfully updated.';
         $respData['data']=$product;
         return response()->json($respData);
     }
@@ -41,6 +43,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete($id);
         $respData['status']=204;
+        $respData['message']='Successfully deleted.';
         return response()->json($respData);
     }
 }
