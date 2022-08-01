@@ -96,7 +96,7 @@ export class ProductsComponent implements OnInit {
     if(this.editProductForm.invalid){
       return;
     }
-
+    this.toggleShowSpinnerEdit();
     this.dataService.editProduct(this.editProductForm.value, this.productId).subscribe(res=>{
       this.data=res;
       console.log(res);
@@ -154,7 +154,7 @@ export class ProductsComponent implements OnInit {
     if(this.newProductForm.invalid){
       return;
     }
-
+    this.toggleShowSpinnerNew();
     this.dataService.newProduct(this.newProductForm.value).subscribe(res => {
       this.data=res;
       console.log(res);
@@ -175,6 +175,17 @@ export class ProductsComponent implements OnInit {
       this.newProductFormSubmitted = true;
       this.newProductForm.reset();
     });
+  }
+
+  isShownSpinnerEdit: boolean = false ; // hidden by default
+  isShownSpinnerNew: boolean = false ; // hidden by default
+
+  toggleShowSpinnerEdit() {
+    this.isShownSpinnerEdit = ! this.isShownSpinnerEdit;
+  }
+
+  toggleShowSpinnerNew() {
+    this.isShownSpinnerNew = ! this.isShownSpinnerNew;
   }
 
 }

@@ -74,4 +74,34 @@ export class DataService {
   editCompany(data:any, id:any){
     return this.http.put(environment.apiUrl+'/api/company/'+id, data);
   }
+
+  getCompanyTypeById(id:any){
+    return this.http.get(environment.apiUrl+'/api/company-type/'+id);
+  }
+
+  newCompanyType(data:any){
+    return this.http.post(environment.apiUrl+'/api/company-type', data);
+  }
+
+  editCompanyType(data:any, id:any){
+    return this.http.put(environment.apiUrl+'/api/company-type/'+id, data);
+  }
+
+  getOrderStatuses(){
+    return this.http.get(environment.apiUrl+'/api/order-status');
+  }
+
+  getOrderStatusById(id:any){
+    return this.http.get(environment.apiUrl+'/api/order-status/'+id);
+  }
+
+  newOrderStatus(data:any){
+    return this.http.post(environment.apiUrl+'/api/order-status', data);
+  }
+
+  editOrderStatus(data:any, id:any){
+    return this.http.put(environment.apiUrl+'/api/order-status/'+id, data);
+  }
+
+
 }

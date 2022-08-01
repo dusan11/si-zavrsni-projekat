@@ -119,7 +119,7 @@ export class CompaniesComponent implements OnInit {
     if(this.editCompanyForm.invalid){
       return;
     }
-
+    this.toggleShowSpinnerEdit();
     this.dataService.editCompany(this.editCompanyForm.value, this.companyId).subscribe(res=>{
       this.data=res;
       console.log(res);
@@ -186,7 +186,7 @@ export class CompaniesComponent implements OnInit {
       return;
     }
     console.log(this.newCompanyForm.value)
-
+    this.toggleShowSpinnerNew();
     this.dataService.newCompany(this.newCompanyForm.value).subscribe(res => {
       this.data=res;
       console.log(res);
@@ -207,6 +207,18 @@ export class CompaniesComponent implements OnInit {
       this.newCompanyFormSubmitted = true;
       this.newCompanyForm.reset();
     });
+  }
+
+  
+  isShownSpinnerEdit: boolean = false ; // hidden by default
+  isShownSpinnerNew: boolean = false ; // hidden by default
+
+  toggleShowSpinnerEdit() {
+    this.isShownSpinnerEdit = ! this.isShownSpinnerEdit;
+  }
+
+  toggleShowSpinnerNew() {
+    this.isShownSpinnerNew = ! this.isShownSpinnerNew;
   }
 
 }

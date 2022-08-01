@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid){
       return;
     }
-
+    this.toggleShowSpinner();
     this.dataService.login(this.loginForm.value).subscribe(res => {
       this.data = res;
      // console.log(res);
@@ -58,4 +58,11 @@ export class LoginComponent implements OnInit {
   get password(){
     return this.loginForm.get('password');
   }
+
+
+isShownSpinner: boolean = false ; // hidden by default
+
+toggleShowSpinner() {
+  this.isShownSpinner = ! this.isShownSpinner;
+}
 }

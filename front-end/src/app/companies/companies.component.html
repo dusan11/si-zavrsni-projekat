@@ -153,9 +153,9 @@
         <h1 class="h2">Companies</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">
-              Export Companies Table
-            </button>
+            <div class="spinner-border float-right" role="status" *ngIf="isShownSpinnerEdit || isShownSpinnerNew">
+              <span class="sr-only"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -184,6 +184,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Responsible Person</th>
                 <th scope="col">Company type</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -196,12 +197,14 @@
                 <td>{{ comp.responsible_person }}</td>
                 <td>{{ comp.company_type.type }}</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-sm" (click)="editCompanySetData(comp.id)">
-                    Edit
-                  </button>
-                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteCompany(comp.id)">
-                    Delete
-                  </button>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary btn-sm" (click)="editCompanySetData(comp.id)">
+                      Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteCompany(comp.id)">
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>

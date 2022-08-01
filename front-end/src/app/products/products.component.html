@@ -186,9 +186,9 @@
             <h1 class="h2">Products</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                  Export Products Table
-                </button>
+                  <div class="spinner-border float-right" role="status" *ngIf="isShownSpinnerEdit || isShownSpinnerNew">
+                    <span class="sr-only"></span>
+                  </div>
               </div>
             </div>
           </div>
@@ -226,12 +226,14 @@
                     <td>{{ prod.certificate_number }}</td>
                     <td>{{ prod.price }}</td>
                     <td>
-                      <button type="button" class="btn btn-primary btn-sm" (click)="editProductSetData(prod.id)">
-                        Edit
-                      </button>
-                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(prod.id)">
-                        Delete
-                      </button>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary btn-sm" (click)="editProductSetData(prod.id)">
+                          Edit
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(prod.id)">
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
