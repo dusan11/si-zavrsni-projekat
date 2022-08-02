@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
         progressBar: true
       });
      } else if(this.data.status === 0) {
+      this.submitted = false;
+      this.toggleShowSpinner();
       this.toastr.error(JSON.stringify(this.data.message), JSON.stringify(this.data.code), {
         timeOut: 4000,
         progressBar: true

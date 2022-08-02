@@ -66,7 +66,7 @@ changeUserName(){
     return;
   }
   console.log(this.nameChangeForm.value);
-
+  this.toggleShowSpinner();
   this.dataService.changeUserName(this.nameChangeForm.value, this.userId).subscribe(res => {
     this.data=res;
     console.log(res);
@@ -105,7 +105,7 @@ changeEmail(){
     return;
   }
   console.log(this.emailChangeForm.value);
-
+  this.toggleShowSpinner();
   this.dataService.changeUserEmail(this.emailChangeForm.value, this.userId).subscribe(res => {
     this.data=res;
     console.log(res);
@@ -140,6 +140,13 @@ toggleShow() {
 isShownName: boolean = false ; // hidden by default
 
 toggleShowName() {
-  this.isShownName = ! this.isShown;
+  this.isShownName = ! this.isShownName;
 }
+
+isShownSpinner: boolean = false ; // hidden by default
+
+toggleShowSpinner() {
+  this.isShownSpinner = ! this.isShownSpinner;
+}
+
 }
