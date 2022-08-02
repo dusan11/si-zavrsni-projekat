@@ -15,10 +15,14 @@ class CompanyTypeController extends Controller
 
     public function store(Request $request)
     {
-        $data = CompanyType::create($request->all());
+        //$data = CompanyType::create($request->all());
+        $success = CompanyType::insert([
+            'type' => $request->type,
+        ]);
+
         $respData['status']=201;
         $respData['message']='Successfully created.';
-        $respData['data']=$data;
+        $respData['success']=$success;
         return response()->json($respData);
     }
 
