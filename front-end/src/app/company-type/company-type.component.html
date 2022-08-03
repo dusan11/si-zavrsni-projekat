@@ -186,9 +186,10 @@
       </div>
       <hr />
 
-      <h5>Company type list</h5>
+      
       <div class="row">
         <div class="table-responsive col-8">
+          <h5>Company type list</h5>
           <table class="table table-striped table-sm">
             <thead>
               <tr>
@@ -212,32 +213,34 @@
           </table>
         </div>
         <div class="col-4">
+          <h5>Company type details</h5>
           <form [formGroup]="editCompanyTypeForm" (ngSubmit)="editCompanyType()">
-            <div class="form-group">
+            <div class="form-group row">
               <label for="id" class="col-sm-2 col-form-label">ID:</label>
-              <input type="text" id="id" class="form-control" disabled value={{companyTypeID}}/>
+              <div class="col-sm-8">
+                <input type="text" id="id" class="form-control" disabled value={{companyTypeID}}/>
+              </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
               <label for="type" class="col-sm-2 col-form-label">Type:</label>
-              <input type="text" id="type" class="form-control" required formControlName="type" value={{editType}}/>
+              <div class="col-sm-8">
+                <input type="text" id="type" class="form-control" required formControlName="type" value={{editType}}/>
+              </div>
               <div style="color: red" *ngIf="type && type.invalid && type.touched">
                 This field is invalid
               </div>
             </div>
           
             <br />
-            <div class="btn-group btn-group-justified">
-              <div class="btn-group">
+            
+              <div class="btn-group col-sm-10">
                 <button type="reset" class="btn btn-outline-warning">
                   Cancel
                 </button>
-              </div>
-              <div class="btn-group">
                 <button type="submit" class="btn btn-outline-primary" [disabled]="editCompanyTypeForm.invalid"> 
                   Save
                 </button>
               </div>
-            </div>
           </form>
         </div>
       </div>

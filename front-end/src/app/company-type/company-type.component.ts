@@ -87,7 +87,7 @@ export class CompanyTypeComponent implements OnInit {
   }
 
   saveNewCompanyType(){
-    this.newCompanyTypeFormSubmitted = true;
+    this.newCompanyTypeFormSubmitted = true; 
     if(this.newCompanyTypeForm.invalid){
       return;
     }
