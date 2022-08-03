@@ -9,7 +9,8 @@ class CompanyController extends Controller
 {
     public function index() 
     {
-        $data = Company::with('company_type')->get();
+        //$data = Company::with('company_type')->get();
+        $data = Company::with('company_type')->orderBy('id', 'DESC')->get();
         return $data;
     }
 

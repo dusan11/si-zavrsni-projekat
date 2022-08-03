@@ -9,7 +9,8 @@ class ProductController extends Controller
 {
     public function index() 
     {
-        $data = Product::all();
+        //$data = Product::all();
+        $data = Product::orderBy('id', 'DESC')->get();
         return $data;
     }
 
