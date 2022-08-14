@@ -80,7 +80,7 @@
       class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"
     >
       <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#"
-        >Jomives doo</a
+        >SI Projekat</a
       >
       <button
         class="navbar-toggler position-absolute d-md-none collapsed"
@@ -208,8 +208,9 @@
           <div class="row">
             <div class="col-8">
               <h5>Products list</h5>
-              <div style="height: 500px;overflow: scroll;">
-                <table class="table table-striped table-sm" id="responsive-table">
+              <hr>
+              <div style="height: 80%;overflow: scroll;">
+                <table class="table table-striped table-sm">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -229,10 +230,10 @@
                       <td>{{ prod.price }}</td>
                       <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-primary btn-sm" (click)="editProductSetData(prod.id)">
+                          <button type="button" class="btn btn-outline-warning btn-sm" (click)="editProductSetData(prod.id)">
                             Edit
                           </button>
-                          <button type="button" class="btn btn-danger btn-sm" (click)="deleteProduct(prod.id)">
+                          <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteProduct(prod.id)">
                             Delete
                           </button>
                         </div>
@@ -244,6 +245,7 @@
             </div>
             <div class="col-4">
               <h5>Product details</h5>
+              <hr>
               <form [formGroup]="editProductForm" (ngSubmit)="editProduct()">
                 <div class="form-group row">
                   <label for="id" class="col-sm-5 col-form-label">ID:</label>
@@ -298,10 +300,10 @@
               
                 <br />
                   <div class="btn-group col-sm-11">
-                    <button type="reset" class="btn btn-outline-warning">
+                    <button type="reset" class="btn btn-outline-danger">
                       Cancel
                     </button>
-                    <button type="submit" class="btn btn-outline-primary" [disabled]="editProductForm.invalid"> 
+                    <button type="submit" class="btn btn-outline-success" [disabled]="editProductForm.invalid"> 
                       Edit
                     </button>
                   </div>                  
@@ -316,17 +318,21 @@
                   <h4 class="modal-title">Add new product</h4>
                 </div>
                 <div class="modal-body">
-                  <form [formGroup]="newProductForm" (ngSubmit)="editProduct()">
-                    <div class="form-group">
-                      <label for="name" class="col-sm-2 col-form-label">Name:</label>
-                      <input type="text" id="name" class="form-control" required formControlName="name" />
+                  <form [formGroup]="newProductForm" (ngSubmit)="saveNewProduct()">
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-5 col-form-label">Name:</label>
+                      <div class="col-sm-6">
+                        <input type="text" id="name" class="form-control" required formControlName="name" />
+                      </div>
                       <div style="color: red" *ngIf="nameNew && nameNew.invalid && nameNew.touched">
                         This field is invalid
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="manifacturer" class="col-sm-2 col-form-label">Manifacturer:</label>
-                      <input type="text" id="manifacturer" class="form-control" required formControlName="manifacturer" />
+                    <div class="form-group row">
+                      <label for="manifacturer" class="col-sm-5 col-form-label">Manifacturer:</label>
+                      <div class="col-sm-6">
+                        <input type="text" id="manifacturer" class="form-control" required formControlName="manifacturer" />
+                      </div>
                       <div style="color: red" *ngIf="
                                         manifacturerNew &&
                                         manifacturerNew.invalid &&
@@ -335,9 +341,11 @@
                         This field is invalid
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="certificate_number" class="col-sm-2 col-form-label">Certificate number:</label>
-                      <input type="text" id="certificate_number" class="form-control" required formControlName="certificate_number" />
+                    <div class="form-group row">
+                      <label for="certificate_number" class="col-sm-5 col-form-label">Certificate number:</label>
+                      <div class="col-sm-6">
+                        <input type="text" id="certificate_number" class="form-control" required formControlName="certificate_number" />
+                      </div>
                       <div style="color: red" *ngIf="
                                         certificate_numberNew &&
                                         certificate_numberNew.invalid &&
@@ -346,22 +354,27 @@
                         This field is invalid
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="price" class="col-sm-2 col-form-label">Price:</label>
-                      <input type="text" id="price" class="form-control" required formControlName="price" />
+                    <div class="form-group row">
+                      <label for="price" class="col-sm-5 col-form-label">Price:</label>
+                      <div class="col-sm-6">
+                        <input type="text" id="price" class="form-control" required formControlName="price" />
+                      </div>
                       <div style="color: red" *ngIf="priceNew && priceNew.invalid && priceNew.touched">
                         This field is invalid
                       </div>
                     </div>
                   
                     <br />
-                    <div class="btn-group">
-                      <button type="reset" class="btn btn-outline-warning">
-                        Cancel
-                      </button>
-                      <button type="submit" class="btn btn-outline-primary" [disabled]="newProductForm.invalid" (click)="saveNewProduct()"> 
-                        Save
-                      </button>
+                    <div class="form-group row">
+                      <label for="price" class="col-sm-5 col-form-label"></label>
+                      <div class="btn-group col-sm-6">
+                        <button type="reset" class="btn btn-outline-danger">
+                          Cancel
+                        </button>
+                        <button type="submit" class="btn btn-outline-success" [disabled]="newProductForm.invalid" (click)="saveNewProduct()"> 
+                          Save
+                        </button>
+                      </div>
                     </div>
                         
                   </form>

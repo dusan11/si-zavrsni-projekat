@@ -79,7 +79,7 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Jomives doo</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">SI Projekat</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -163,24 +163,24 @@
       </div>
 
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sm btn-outline-secondary">Change Password</button>
+        <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Change Password</button> -->
         <button  type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleShowName()">Change name</button>
         <button  type="button" class="btn btn-sm btn-outline-secondary" (click)="toggleShow()">Change email</button>
-        <button type="button" class="btn btn-sm btn-outline-danger">Delete Account</button>
+        <!-- <button type="button" class="btn btn-sm btn-outline-danger">Delete Account</button> -->
       </div>
       <hr>
       <h5>Your account details</h5>
 
       <form>
         <div class="form-group row">
-          <label for="staticName" class="col-sm-2 col-form-label">Name: </label>
-          <div class="col-sm-10">
+          <label for="staticName" class="col-sm-1 col-form-label">Name: </label>
+          <div class="col-sm-4">
             <input type="text" readonly class="form-control-plaintext" id="staticName" value={{userName}}>
           </div>
         </div>
         <div class="form-group row">
-          <label for="staticEmail" class="col-sm-2 col-form-label">Email: </label>
-          <div class="col-sm-10">
+          <label for="staticEmail" class="col-sm-1 col-form-label">Email: </label>
+          <div class="col-sm-4">
             <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{userEmail}}>
           </div>
         </div>
@@ -194,20 +194,27 @@
         <form [formGroup]="nameChangeForm" (ngSubmit)="changeUserName()">
           <div class="form-group row">
             <label for="oldName" class="col-sm-2 col-form-label">Old name:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
               <input type="text" readonly class="form-control-plaintext" id="oldName" value={{userName}}>
             </div>
           </div>
           <div class="form-group row">
             <label for="newName" class="col-sm-2 col-form-label">New name:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
               <input type="text" class="form-control" id="newName" placeholder="" required formControlName="name">
+              <div style="color: red;" *ngIf="name && name.invalid && name.touched">This field is required</div>
             </div>
-            <div style="color: red;" *ngIf="name && name.invalid && name.touched">This field is invalid</div>
+            
           </div>
           <br>
-          <button type="button" class="btn btn-danger" (click)="toggleShowName()">Close</button>
-          <button class="btn btn-primary" type="submit" [disabled]="nameChangeForm.invalid">Save changes</button>
+          <div class="form-group row">
+            <label for="newName" class="col-sm-2 col-form-label"></label>
+            <div class="btn-group col-sm-2">
+              <button type="reset" class="btn btn-outline-danger" (click)="toggleShowName()">Close</button>
+              <button class="btn btn-outline-primary" type="submit" [disabled]="nameChangeForm.invalid">Save</button>
+            </div>
+          </div>
+          
         </form>
     </div>
 
@@ -219,20 +226,25 @@
         <form [formGroup]="emailChangeForm" (ngSubmit)="changeEmail()">
           <div class="form-group row">
             <label for="oldEmail" class="col-sm-2 col-form-label">Old email:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
               <input type="text" readonly class="form-control-plaintext" id="oldEmail" value={{userEmail}}>
             </div>
           </div>
           <div class="form-group row">
             <label for="newEmail" class="col-sm-2 col-form-label">New email:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-2">
               <input type="text" class="form-control" id="newEmail" placeholder="" required formControlName="email">
-            </div>
-            <div style="color: red;" *ngIf="email && email.invalid && email.touched">This field is invalid</div>
+              <div style="color: red;" *ngIf="email && email.invalid && email.touched">This field is required</div>
+            </div> 
           </div>
           <br>
-          <button type="button" class="btn btn-danger" (click)="toggleShow()">Close</button>
-          <button class="btn btn-primary" type="submit" [disabled]="emailChangeForm.invalid">Save changes</button>
+          <div class="form-group row">
+            <label for="newEmail" class="col-sm-2 col-form-label"></label>
+            <div class="btn-group col-sm-2">
+              <button type="reset" class="btn btn-outline-danger" (click)="toggleShow()">Close</button>
+              <button class="btn btn-outline-primary" type="submit" [disabled]="emailChangeForm.invalid">Save</button>
+            </div>
+          </div>
         </form>
     </div>
 

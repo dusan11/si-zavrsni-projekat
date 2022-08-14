@@ -88,6 +88,10 @@ export class OrdersEditComponent implements OnInit {
     })
   }
 
+  commingSoon(){
+    alert("Comming soon.");
+  }
+
   showOrderInConsole(){
     console.log(this.order);
     console.log(this.orderProducts);

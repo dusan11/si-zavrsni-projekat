@@ -45,6 +45,10 @@ export class OrdersNewComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  goBack(){
+    this.router.navigate(['/orders']);
+  }
+
   newOrderForm = new FormGroup({
     date:new FormControl('', [Validators.required, Validators.pattern(/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)]),
     company:new FormControl('', [Validators.required]),

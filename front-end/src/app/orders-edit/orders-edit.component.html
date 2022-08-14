@@ -75,7 +75,7 @@
   </head>
   <body>
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-sm btn-outline-secondary" >
+      <button type="button" class="btn btn-sm btn-outline-secondary" (click)="commingSoon()">
         Print order details
       </button>
     </div>
@@ -142,10 +142,10 @@
       
         <br />
           <div class="btn-group col-sm-12">
-            <button type="reset" class="btn btn-outline-warning" (click)="goBack()">
+            <button type="reset" class="btn btn-outline-danger" (click)="goBack()">
               Cancel
             </button>
-            <button type="submit" class="btn btn-outline-primary" [disabled]="editOrderForm.invalid"> 
+            <button type="submit" class="btn btn-outline-success" [disabled]="editOrderForm.invalid"> 
               Edit
             </button>
           </div>     
@@ -169,7 +169,7 @@
             <tr *ngFor="let product of products">
               <td>{{ product.name }}</td>
               <td>{{ product.price }}</td>
-              <td><button class="btn btn-sm btn-warning" (click)="addProductToOrder(product)">Add</button></td>
+              <td><button class="btn btn-sm btn-outline-primary" (click)="addProductToOrder(product)">Add</button></td>
             </tr>
           </tbody>
         </table>
@@ -191,7 +191,7 @@
               <tr *ngFor="let prod of orderProducts; let indexOfelement=index;">
                 <td>{{ prod.name }}</td>
                 <td>{{ prod.pivot.amount }}</td>
-                <td><button class="btn btn-sm btn-danger" (click)="removeProductFromOrder(prod, indexOfelement)">Remove</button></td>
+                <td><button class="btn btn-sm btn-outline-danger" (click)="removeProductFromOrder(prod, indexOfelement)">Remove</button></td>
               </tr>
             </tbody>
           </table>
