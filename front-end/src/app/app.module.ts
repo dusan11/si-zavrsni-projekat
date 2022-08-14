@@ -15,12 +15,18 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 
+import { MaterialModule } from './material/material.module';
+
+
 import { UserComponent } from './user/user.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ProductsComponent } from './products/products.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { CompanyTypeComponent } from './company-type/company-type.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
+import { OrdersNewComponent } from './orders-new/orders-new.component';
+import { OrdersEditComponent } from './orders-edit/orders-edit.component';
+import { OrdersAddProductComponent } from './orders-add-product/orders-add-product.component';
 
 const routes:Routes = [
   {
@@ -52,12 +58,20 @@ const routes:Routes = [
   },
   {
     path: 'orders', component:OrdersComponent,
+    children: [
+      {
+        path:'new', component:OrdersNewComponent
+      },
+      {
+        path:'edit/:id', component:OrdersEditComponent
+      }
+    ],
     canActivate: [AuthGuard]
   },
   {
     path: 'products', component:ProductsComponent,
     canActivate: [AuthGuard]
-  },
+  }
 ]
 
 @NgModule({
@@ -70,16 +84,21 @@ const routes:Routes = [
     ProductsComponent,
     CompaniesComponent,
     CompanyTypeComponent,
-    OrderStatusComponent
+    OrderStatusComponent,
+    OrdersNewComponent,
+    OrdersEditComponent,
+    OrdersAddProductComponent
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

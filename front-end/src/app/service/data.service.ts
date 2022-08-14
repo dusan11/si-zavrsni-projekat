@@ -103,5 +103,34 @@ export class DataService {
     return this.http.put(environment.apiUrl+'/api/order-status/'+id, data);
   }
 
+  getOrder(){
+    return this.http.get(environment.apiUrl+'/api/order');
+  }
+
+  getOrderById(id:any){
+    return this.http.get(environment.apiUrl+'/api/order/'+id);
+  }
+
+  newOrder(data:any){
+    return this.http.post(environment.apiUrl+'/api/order', data);
+  }
+
+  editOrderPrice(data:any, id:any){
+    return this.http.put(environment.apiUrl+'/api/order/'+id+'/price', data);
+  }
+
+  editOrder(data:any, id:any){
+    return this.http.put(environment.apiUrl+'/api/order/'+id, data);
+  }
+
+  addProductToOrder(data:any, orderId:any, productId:any){
+    return this.http.post(environment.apiUrl+'/api/order/'+orderId+'/product/'+productId, data);
+  }
+
+  removeProductFromOrder(orderId:any, productId:any){
+    return this.http.delete(environment.apiUrl+'/api/order/'+orderId+'/product/'+productId);
+
+  }
+
 
 }

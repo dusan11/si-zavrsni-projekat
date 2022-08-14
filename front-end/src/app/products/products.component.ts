@@ -46,6 +46,14 @@ export class ProductsComponent implements OnInit {
       this.editCertificate = this.data.certificate_number;
       this.editPrice = this.data.price;
       this.productId=id;
+
+      this.editProductForm.setValue({
+        name:this.editName,
+        manifacturer:this.editManifacturer,
+        certificate_number:this.editCertificate,
+        price:this.editPrice
+  
+      })
     })
 
 

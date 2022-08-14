@@ -61,7 +61,17 @@ export class CompaniesComponent implements OnInit {
       this.editCompTypeId = this.data.company_type.id;
       this.editCompTypeType = this.data.company_type.type;
       this.companyId=id;
-    });
+
+      this.editCompanyForm.setValue({
+        name:this.editName,
+        adress:this.editAdress,
+        account_no:this.editAccountNo,
+        email:this.editEmail,
+        responsible_person:this.editRespPerson,
+        company_type:this.editCompTypeId
+
+          })
+       });
 
 
   }
