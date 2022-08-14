@@ -26,6 +26,7 @@ import { CompanyTypeComponent } from './company-type/company-type.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { OrdersNewComponent } from './orders-new/orders-new.component';
 import { OrdersEditComponent } from './orders-edit/orders-edit.component';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 
 const routes:Routes = [
@@ -100,7 +101,7 @@ const routes:Routes = [
     ToastrModule.forRoot(),
     
   ],
-  providers: [],
+  providers: [BnNgIdleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
