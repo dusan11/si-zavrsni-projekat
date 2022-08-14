@@ -16,7 +16,7 @@ class Order extends Model
 
     ];
 
-    public function status()
+    public function orderStatus()
     {
         return $this->belongsTo(OrderStatus::class);
     }
@@ -28,7 +28,7 @@ class Order extends Model
     //relacija za many-many
     public function products()
     {
-    //return $this->belongsToMany(Product::class)->withPivot('amount');
-    return $this->belongsToMany(Product::class)->using(OrderProduct::class);
+    return $this->belongsToMany(Product::class)->withPivot(['amount']);
+    //return $this->belongsToMany(Product::class)->using(OrderProduct::class);
     }
 }

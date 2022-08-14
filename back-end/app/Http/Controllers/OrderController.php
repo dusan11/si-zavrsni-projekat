@@ -9,31 +9,64 @@ class OrderController extends Controller
 {
     public function index() 
     {
-        $data = Order::with('status', 'company', 'products')->get();
+        $data = Order::with('orderStatus', 'company', 'products')->orderBy('id', 'DESC')->get();
         return $data;
     }
 
     public function show($id)
     {
-        $data = Order::with('status', 'company', 'products')->findOrFail($id);
+        $data = Order::with('orderStatus', 'company', 'products')->findOrFail($id);
         return $data;
     }
 
     public function store(Request $request)
     {
-        $data = Order::create($request->all());
+        $order = Order::insert([
+            'date' => $request->date,
+            'company_id' => $request->company,
+            'order_status_id' => $request->orderStatus,
+            'total_price' => $request->totalPrice,
+            'created_at' =>  date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+        
         $respData['status']=201;
         $respData['message']='Successfully created.';
-        $respData['data']=$data;
+        $respData['order']=$order;
         return response()->json($respData);
     }
 
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
-        $order->update($request->all());
+        //$order->update($request->all());
+      
+        $order->update([
+            'date' => $request->date,
+            'company_id' => $request->companyId,
+            'order_status_id' => $request->orderStatusId,
+            'total_price' => $request->total_price,
+            'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+
         $respData['status']=204;
         $respData['message']='Successfully updated.';
+        $respData['data']=$order;
+        return response()->json($respData);
+    }
+
+    public function updateTotalPrice(Request $request, $id)
+    {
+        $order = Order::find($id);
+        //$order->update($request->all());
+      
+        $order->update([
+            'total_price' => $request->total_price,
+            'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+
+        $respData['status']=204;
+        $respData['message']='Total price successfully updated.';
         $respData['data']=$order;
         return response()->json($respData);
     }
@@ -59,7 +92,7 @@ class OrderController extends Controller
     public function addProduct(Request $request, $order_id, $product_id)
     {
         $order = Order::find($order_id);
-        $order->products()->attach($product_id, $request->input('amount'));
+        $order->products()->attach($product_id, ['amount' => $request->input('amount')]);
         $respData['status']=200;
         $respData['message']='Successfully added the product.';
         return response()->json($respData);
