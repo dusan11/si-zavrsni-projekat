@@ -1,7 +1,5 @@
 --PROJEKAT KONTROLA PROIZVODA--
 
--SPECIFIKACIJA ZAHTJEVA-
-
 -RUTE-
 
 *PRODUCTS* ##DONE##
@@ -12,7 +10,7 @@ POST - /api/products - Dodavanje novog proizvoda
 PUT - /api/products/{id} - Izmjena jednog proizvoda
 DELETE - /api/products/{id} - Brisanje jednog proizvoda
 
-*ORDERS* ##DONE## JOS TREBA URADITI PIVOT TABELU!!! ZA ORDERS TOTAL PRICE CE SE RACUNATI IZ PIVOT TABELE TAKO STO CE SE UZIMATI POJEDINACNA CIJENA IZ SVAKOG PROIZVODA
+*ORDERS* ##DONE##
 
 1.kada se pravi narudzba u polje se proslijedjuju svi proizvodi!
 
